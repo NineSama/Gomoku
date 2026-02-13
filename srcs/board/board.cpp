@@ -67,3 +67,32 @@ bool Board::checkWin(Cell color)
     }
     return false;
 }
+
+int Board::checkCapture(int x, int y, Cell color)
+{
+    Cell opponent = (color == BLACK) ? WHITE : BLACK;
+
+    int dx[] = {1, 1, 0, -1, -1, -1, 0, 1};
+    int dy[] = {0, 1, 1, 1, 0, -1, -1, -1};
+    int count = 0;
+
+    for (int dir = 0; dir < 8; ++dir) {
+        int nx1 = x + dx[dir];
+        int ny1 = y + dy[dir];
+        int nx2 = x + 2 * dx[dir];
+        int ny2 = y + 2 * dy[dir];
+        int nx3 = x + 3 * dx[dir];
+        int ny3 = y + 3 * dy[dir];
+
+        if (nx3 < 0 || nx3 >= BOARD_SIZE || ny3 < 0 || ny3 >= BOARD_SIZE)
+            continue;
+        if (board[ny1][nx1] == opponent && board[ny2][nx2] == opponent && board[ny3][nx3] == color)
+        {
+            board[ny1][nx1] = EMPTY;
+            board[ny2][nx2] = EMPTY;
+            count++;
+            std::cout << (color == BLACK ? "Black" : "White") << " captures at [" << nx1 << ", " << ny1 << "] and [" << nx2 << ", " << ny2 << "]" << std::endl;
+        }
+    }
+    return count;
+}

@@ -18,6 +18,7 @@ class Board
         void    placeStone(int x, int y, Cell color);
         bool    isPlacementValid(int x, int y);
         bool    checkWin(Cell color);
+        int     checkCapture(int x, int y, Cell color);
 
     private:
         std::vector<std::vector<Cell> > board;
