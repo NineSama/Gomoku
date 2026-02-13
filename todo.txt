@@ -1,0 +1,4 @@
+1. Add check if a capture can break the 5 in a row win condition
+2. Add 5 captures = win
+3. Add illegal 2 free-threes move
+4. Add UI
