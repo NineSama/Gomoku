@@ -1,3 +1,5 @@
 2. Add 5 captures = win
 3. Add illegal 2 free-threes move
 4. Add UI
+
+NB: need to force move after a pair is found on a 5 in a row
