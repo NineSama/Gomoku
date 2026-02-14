@@ -37,6 +37,11 @@ bool Board::isPlacementValid(int x, int y)
     return true;
 }
 
+bool    Board::isInside(int x, int y) const
+{
+    return (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE);
+}
+
 bool Board::checkWin(Cell color)
 {
     int dx[] = {1, 0, 1, -1};
@@ -50,20 +55,42 @@ bool Board::checkWin(Cell color)
                 int count = 0;
                 int nx = x;
                 int ny = y;
-
-                for (int i = 0; i < 5; ++i) {
-                    if (nx < 0 || nx >= BOARD_SIZE || ny < 0 || ny >= BOARD_SIZE)
-                        break;
-                    if (board[ny][nx] != color)
-                        break;
+                while (nx >= 0 && nx < BOARD_SIZE && ny >= 0 && ny < BOARD_SIZE && board[ny][nx] == color) {
                     count++;
                     nx += dx[dir];
                     ny += dy[dir];
                 }
                 if (count >= 5)
-                    return true;
+                    if (!isPairCapturable(nx - dx[dir], ny - dy[dir], dir, color))
+                        return true;
             }
         }
+    }
+    return false;
+}
+
+bool Board::isPairCapturable(int x, int y, int rowDir, Cell color)
+{
+    Cell opponent = (color == BLACK) ? WHITE : BLACK;
+
+    int dx[] = {1, 0, 1, -1, -1, 0, -1, 1};
+    int dy[] = {0, 1, 1, 1, 0, -1, -1, -1};
+
+    while (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
+        for (int dir = 0; dir < 8; ++dir) {
+            int nx0 = x - dx[dir];
+            int ny0 = y - dy[dir];
+            int nx1 = x + dx[dir];
+            int ny1 = y + dy[dir];
+            int nx2 = x + 2 * dx[dir];
+            int ny2 = y + 2 * dy[dir];
+            if (!isInside(nx0, ny0) || !isInside(nx1, ny1) || !isInside(nx2, ny2))
+                continue;
+            if (board[ny0][nx0] == opponent && board[ny1][nx1] == color && board[ny2][nx2] == EMPTY)
+                return (std::cout << "Pair is capturable at [" << nx2 << ", " << ny2 << "]" << std::endl, true);
+        }
+        x -= dx[rowDir];
+        y -= dy[rowDir];
     }
     return false;
 }

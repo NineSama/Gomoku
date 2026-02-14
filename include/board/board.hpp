@@ -17,7 +17,9 @@ class Board
 
         void    placeStone(int x, int y, Cell color);
         bool    isPlacementValid(int x, int y);
+        bool    isInside(int x, int y) const;
         bool    checkWin(Cell color);
+        bool    isPairCapturable(int x, int y, int dir, Cell color);
         int     checkCapture(int x, int y, Cell color);
 
     private:
