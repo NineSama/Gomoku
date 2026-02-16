@@ -5,6 +5,7 @@ CC			=	c++
 FLAGS		=	-Wall -Werror -Wextra -std=c++98
 
 SRCS		=	srcs/main.cpp	\
+				srcs/utils/utils.cpp	\
 				srcs/board/board.cpp
 
 INCLUDES	=	-I include

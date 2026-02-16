@@ -1,12 +1,8 @@
 #include <iostream>
 #include <limits>
 #include "board/board.hpp"
-
-struct Player
-{
-    Cell color;
-    int captures;
-};
+#include "player.hpp"
+#include "utils/utils.hpp"
 
 int main()
 {
@@ -39,7 +35,9 @@ int main()
         current->captures += board.checkCapture(x, y, current->color);
         board.printBoard();
         if (board.checkWin(current->color))
-            return (std::cout << (current->color == BLACK ? "Black" : "White") << " has won!" << std::endl, 1);
+            return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by 5 in a row!" << std::endl, 1);
+        if (winByCapture(*current))
+            return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by capture!" << std::endl, 1);
         current = (current->color == BLACK ? &white : &black);
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
     }
