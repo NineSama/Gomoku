@@ -1,4 +1,7 @@
+1. Check game logic after a capture cancelling a 5in a row :
+    if you capture, opponent can just put stone back where it was captured and win ?
+2. Care with bugs, u can win without by 5inarow without 5 in a row 
+    (happened while testing, cant reproduce it)?
 3. Add illegal 2 free-threes move
-4. Add UI
 
 NB: need to force move after a pair is found on a 5 in a row
