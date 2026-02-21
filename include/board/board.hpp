@@ -10,6 +10,9 @@ enum Cell { EMPTY = 0, BLACK = 1, WHITE = 2 };
 
 class Board
 {
+    private:
+        std::vector<std::vector<Cell> > board;
+
     public:
         Board();
 
@@ -21,9 +24,9 @@ class Board
         bool    checkWin(Cell color);
         bool    isPairCapturable(int x, int y, int dir, Cell color);
         int     checkCapture(int x, int y, Cell color);
+        std::vector<std::vector<Cell> > getBoard() const;
+        Cell getCell(int x, int y) const;
 
-    private:
-        std::vector<std::vector<Cell> > board;
 };
 
 #endif

@@ -6,6 +6,7 @@ FLAGS		=	-Wall -Werror -Wextra -std=c++98
 
 SRCS		=	srcs/main.cpp	\
 				srcs/utils/utils.cpp	\
+				srcs/ui/init_ui.cpp	\
 				srcs/board/board.cpp
 
 INCLUDES	=	-I include
@@ -23,7 +24,7 @@ $(OBJ_DIR)%.o: srcs/%.cpp
 		$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME):	$(OBJS)
-			$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJS) -lX11 -o $(NAME)
 
 clean:		
 			$(RM) $(OBJ_DIR)

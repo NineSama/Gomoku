@@ -123,3 +123,13 @@ int Board::checkCapture(int x, int y, Cell color)
     }
     return count;
 }
+
+std::vector<std::vector<Cell> > Board::getBoard() const
+{return board;}
+
+Cell Board::getCell(int x, int y) const
+{
+    if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE)
+        return board[y][x];
+    return EMPTY;
+}
