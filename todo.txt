@@ -1,7 +1,17 @@
 1. Check game logic after a capture cancelling a 5in a row :
     if you capture, opponent can just put stone back where it was captured and win ?
+    -> logically, if captures < 4 of opponent, game is over even if pair is capturable
 2. Care with bugs, u can win without by 5inarow without 5 in a row 
     (happened while testing, cant reproduce it)?
-3. Add illegal 2 free-threes move
+3. Add illegal 2 free-threes move :
+    create lines centered on the move, in 4 directions.
+    check if when creating the line you see the pattern :
+    .XXX.
+    .X.XX.
+    .XX.X.
+
+    if you see that pattern more than once (>1) then its illegal move
 
 NB: need to force move after a pair is found on a 5 in a row
+
+
