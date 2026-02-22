@@ -7,8 +7,10 @@ Board::Board()
 
 void Board::placeStone(int x, int y, Cell color)
 {
-    if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE)
+    if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
         board[y][x] = color;
+        std::cout << (color == BLACK ? "Black" : "White") << " places stone at [" << x << ", " << y << "]" << std::endl;
+    }
 }
 
 void Board::printBoard() const
@@ -37,7 +39,7 @@ bool Board::isPlacementValid(int x, int y)
     return true;
 }
 
-bool    Board::isInside(int x, int y) const
+bool Board::isInside(int x, int y) const
 {
     return (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE);
 }
