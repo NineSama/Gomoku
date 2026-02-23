@@ -38,7 +38,6 @@ int main()
             drawGrid(ui);
             board.placeStone(gridX, gridY, current->color);
             current->captures += board.checkCapture(gridX, gridY, current->color);
-            // board.printBoard();
             drawBoard(ui, board);
             if (board.checkWin(current->color))
                 return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by 5 in a row!" << std::endl, 1);
