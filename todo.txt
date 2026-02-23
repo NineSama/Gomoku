@@ -15,3 +15,31 @@
 NB: need to force move after a pair is found on a 5 in a row
 
 
+HEURISTICS / MINIMAX / ALPHA BETA PRUNING
+
+HEURISTICS : its a function that evaluates the board on how good the position is for a given player (or color in that case)
+-> it returns a score depending on various parameters such as : 
+    - number of stones
+    - how many consecutive stones
+    - are the ends open ?
+
+    - opponent threats :
+        - same evaluation that you have to substract to the score
+    
+    - captures
+    etc ...
+
+-> it is used to set a ranking on a position, that would be compared to other position's rankings
+
+MINIMAX : recursive function that take in parameter:
+    - the position
+    - the depth
+    - the color thats playing (calling the function)
+
+    it calls the evaluate function, and after its recursion returns the best move at the given position 
+    (after choosing from 10 depths for example)
+
+ALPHA BETA PRUNING : way to make the minimax function faster, by eliminating branches that would by scoring,
+    be worse than positions that have already been evaluated.
+
+    considering Player is trying to maximise its score, while Opponent minimize it
