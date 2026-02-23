@@ -3,10 +3,11 @@
 
 #include <vector>
 #include <iostream>
+#include "board/cell.hpp"
+#include "utils/utils.hpp"
+#include "player.hpp"
 
 const int BOARD_SIZE = 19;
-
-enum Cell { EMPTY = 0, BLACK = 1, WHITE = 2 };
 
 class Board
 {
@@ -23,6 +24,7 @@ class Board
         bool    isInside(int x, int y) const;
         bool    checkWin(Cell color);
         bool    isPairCapturable(int x, int y, int dir, Cell color);
+        bool    isDoubleFreeThree(int x, int y, Cell color);
         int     checkCapture(int x, int y, Cell color);
         std::vector<std::vector<Cell> > getBoard() const;
         Cell getCell(int x, int y) const;

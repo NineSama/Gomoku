@@ -1,6 +1,6 @@
 #include "board/board.hpp"
 
-Board::Board() 
+Board::Board()
 {
     board.resize(BOARD_SIZE, std::vector<Cell>(BOARD_SIZE, EMPTY));
 }
@@ -95,6 +95,38 @@ bool Board::isPairCapturable(int x, int y, int rowDir, Cell color)
         y -= dy[rowDir];
     }
     return false;
+}
+
+bool Board::isDoubleFreeThree(int x, int y, Cell color)
+{
+    int dx[] = {1, 0, 1, -1};
+    int dy[] = {0, 1, 1, 1};
+    std::string lineStr;
+    int count = 0;
+    std::vector<std::vector<Cell> > tempBoard = board; // Create a temporary copy of the board
+    tempBoard[y][x] = color; // Place the stone on the temporary board
+
+    for (int dir = 0; dir < 4; ++dir) {
+        std::vector<Cell> line;
+        for (int i = -4; i <= 4; ++i) {
+            int nx = x + i * dx[dir];
+            int ny = y + i * dy[dir];
+            if (isInside(nx, ny))
+                line.push_back(tempBoard[ny][nx]);
+            else
+                line.push_back(color == BLACK ? WHITE : BLACK); // Treat out of bounds as opponent color
+        }
+        std::string lineStr;
+        lineStr.reserve(9);
+        for (size_t i = 0; i < line.size(); ++i) {
+            lineStr += cellToChar(line[i], color);
+        }
+        if (createsFreeThree(lineStr))
+            count++;
+        std::cout << "Line " << dir << ": " << lineStr << std::endl;
+
+    }
+    return count >= 2; // Return true if there are at least two free threes
 }
 
 int Board::checkCapture(int x, int y, Cell color)

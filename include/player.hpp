@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "board/board.hpp"
+#include "board/cell.hpp"
 
 struct Player
 {

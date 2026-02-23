@@ -3,6 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <iostream>
+#include "board/cell.hpp"
 #include "board/board.hpp"
 
 #define GRID_SIZE 19
