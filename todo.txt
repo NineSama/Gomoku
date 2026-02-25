@@ -14,7 +14,7 @@
 
 NB: need to force move after a pair is found on a 5 in a row
 
-
+/////////////////////////////////
 HEURISTICS / MINIMAX / ALPHA BETA PRUNING
 
 HEURISTICS : its a function that evaluates the board on how good the position is for a given player (or color in that case)
@@ -43,3 +43,11 @@ ALPHA BETA PRUNING : way to make the minimax function faster, by eliminating bra
     be worse than positions that have already been evaluated.
 
     considering Player is trying to maximise its score, while Opponent minimize it
+
+//////////////////////////////////////
+Lets start without added rules like captures and freethrees. 
+Lets make a scoring relying only on consectutive stones
+and a working ai, 
+    -> knows how to win
+    -> knows how to prevent opponent from winning
+    
