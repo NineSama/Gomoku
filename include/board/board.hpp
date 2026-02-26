@@ -28,6 +28,8 @@ class Board
         int     checkCapture(int x, int y, Cell color);
         std::vector<std::vector<Cell> > getBoard() const;
         Cell getCell(int x, int y) const;
+        std::vector<Cell> getRow(int y) const;
+        std::vector<Cell> getColumn(int x) const;
 
 };
 

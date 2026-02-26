@@ -167,3 +167,22 @@ Cell Board::getCell(int x, int y) const
         return board[y][x];
     return EMPTY;
 }
+
+std::vector<Cell> Board::getRow(int y) const
+{
+    if (y >= 0 && y < BOARD_SIZE)
+        return board[y];
+    return std::vector<Cell>();
+}
+
+std::vector<Cell> Board::getColumn(int x) const
+{
+    if (x >= 0 && x < BOARD_SIZE) {
+        std::vector<Cell> column;
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            column.push_back(board[y][x]);
+        }
+        return column;
+    }
+    return std::vector<Cell>();
+}
