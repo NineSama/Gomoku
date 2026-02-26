@@ -4,12 +4,15 @@
 #include "player.hpp"
 #include "utils/utils.hpp"
 #include "ui/init_ui.hpp"
+#include "ai/minimax.hpp"
+#include "ai/heuristics.hpp"
 
 int main()
 {
     Board board;
     Player black = {BLACK, 0};
     Player white = {WHITE, 0};
+    bool isAiWhite = true;
 
     Player* current = &black;
 
@@ -44,6 +47,15 @@ int main()
             // if (winByCapture(*current))
             //     return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by capture!" << std::endl, 1);
             current = (current->color == BLACK ? &white : &black);
+            if ((isAiWhite && current->color == WHITE) || (!isAiWhite && current->color == BLACK)) {
+                Position move = findBestMove(board, *current, 1);
+                board.placeStone(move.x, move.y, current->color);
+                drawGrid(ui);
+                drawBoard(ui, board);
+                if (board.checkWin(current->color))
+                    return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by 5 in a row!" << std::endl, 1);
+                current = (current->color == BLACK ? &white : &black);
+            }
         }
     }
 

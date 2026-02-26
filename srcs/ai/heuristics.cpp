@@ -30,7 +30,7 @@ int evaluateLine(const std::vector<Cell>& line, Cell color)
     int score = 0;
     int length = 0;
 
-    for (size_t i = 0; i < line.size(); ++i) {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
         if (line[i] == color) {
             length++;
         }
@@ -39,7 +39,7 @@ int evaluateLine(const std::vector<Cell>& line, Cell color)
                 int openEnds = 0;
                 if (i - length - 1 >= 0 && line[i - length - 1] == EMPTY)
                     openEnds++;
-                if (i < line.size() && line[i] == EMPTY)
+                if (i < BOARD_SIZE && line[i] == EMPTY)
                     openEnds++;
                 score += scoreSequence(length, openEnds);
                 length = 0;
@@ -50,7 +50,7 @@ int evaluateLine(const std::vector<Cell>& line, Cell color)
     // Check for sequence at the end of the line
     if (length > 0) {
         int openEnds = 0;
-        if (line.size() - length - 1 >= 0 && line[line.size() - length - 1] == EMPTY)
+        if (BOARD_SIZE - length - 1 >= 0 && line[BOARD_SIZE - length - 1] == EMPTY)
             openEnds++;
         score += scoreSequence(length, openEnds);
     }

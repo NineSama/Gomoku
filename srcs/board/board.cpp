@@ -9,8 +9,14 @@ void Board::placeStone(int x, int y, Cell color)
 {
     if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
         board[y][x] = color;
-        std::cout << (color == BLACK ? "Black" : "White") << " places stone at [" << x << ", " << y << "]" << std::endl;
+        // std::cout << (color == BLACK ? "Black" : "White") << " places stone at [" << x << ", " << y << "]" << std::endl;
     }
+}
+
+void Board::removeStone(int x, int y)
+{
+    if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE)
+        board[y][x] = EMPTY;
 }
 
 void Board::printBoard() const
@@ -32,16 +38,35 @@ void Board::printBoard() const
 
 bool Board::isPlacementValid(int x, int y)
 {
-    if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE)
-        return (std::cout << "Invalid move : out of bounds" << std::endl, false);
-    else if (board[y][x] != EMPTY)
-        return (std::cout << "Invalid move : cell occupied" << std::endl, false);
+    if (!isInside(x, y)) {
+        // std::cout << "Invalid move : out of bounds" << std::endl;
+        return false;
+    }
+    else if (board[y][x] != EMPTY) {
+        // std::cout << "Invalid move : cell occupied" << std::endl;
+        return false;
+    }
     return true;
 }
 
 bool Board::isInside(int x, int y) const
 {
     return (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE);
+}
+
+bool Board::hasNeighbor(int x, int y, int maxDist) const
+{
+    for (int dy = -maxDist; dy <= maxDist; dy++) {
+        for (int dx = -maxDist; dx <= maxDist; dx++) {
+            if (dy == 0 && dx == 0)
+                continue;
+            if (!isInside(x + dx, y + dy))
+                continue;
+            if (board[y + dy][x + dx] != EMPTY)
+                return true;
+        }
+    }
+    return false;
 }
 
 bool Board::checkWin(Cell color)
@@ -65,6 +90,19 @@ bool Board::checkWin(Cell color)
                 if (count >= 5)
                     if (!isPairCapturable(nx - dx[dir], ny - dy[dir], dir, color))
                         return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Board::isGameOver()
+{
+    for (int y = 0; y < BOARD_SIZE; y++) {
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            if (board[y][x] != EMPTY) {
+                if (checkWin(board[y][x]))
+                    return true;
             }
         }
     }

@@ -7,7 +7,6 @@ struct Player
 {
     Cell color;
     int captures;
-
 };
 
 #endif
