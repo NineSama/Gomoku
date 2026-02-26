@@ -8,6 +8,7 @@ SRCS		=	srcs/main.cpp	\
 				srcs/utils/utils.cpp	\
 				srcs/ui/init_ui.cpp	\
 				srcs/ai/heuristics.cpp	\
+				srcs/ai/minimax.cpp	\
 				srcs/board/board.cpp
 
 INCLUDES	=	-I include

@@ -31,18 +31,18 @@ int main()
                 continue;
             if (!board.isPlacementValid(gridX, gridY))
                 continue;
-            if (board.isDoubleFreeThree(gridX, gridY, current->color)) {
-                std::cout << "Invalid move: double free three is not allowed" << std::endl;
-                continue;
-            }
+            // if (board.isDoubleFreeThree(gridX, gridY, current->color)) {
+            //     std::cout << "Invalid move: double free three is not allowed" << std::endl;
+            //     continue;
+            // }
             drawGrid(ui);
             board.placeStone(gridX, gridY, current->color);
-            current->captures += board.checkCapture(gridX, gridY, current->color);
+            // current->captures += board.checkCapture(gridX, gridY, current->color);
             drawBoard(ui, board);
             if (board.checkWin(current->color))
                 return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by 5 in a row!" << std::endl, 1);
-            if (winByCapture(*current))
-                return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by capture!" << std::endl, 1);
+            // if (winByCapture(*current))
+            //     return (std::cout << (current->color == BLACK ? "Black" : "White") << " wins by capture!" << std::endl, 1);
             current = (current->color == BLACK ? &white : &black);
         }
     }
