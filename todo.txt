@@ -51,3 +51,7 @@ UPDATE :
 
 Hmmmmmm quand je place une pierre, celle ci n'impacte vrm que ses voisins a + ou - 5, 
 est ce donc necessairede reevaluer le score des pierres non impactees ?
+
+est ce quil y a moyen de savoir quest ce qui prend le plus de temps dexecution dans un programme ?
+
+est ce que const dans les protoypes impacte les performances ?
