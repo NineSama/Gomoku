@@ -45,9 +45,9 @@ ALPHA BETA PRUNING : way to make the minimax function faster, by eliminating bra
     considering Player is trying to maximise its score, while Opponent minimize it
 
 //////////////////////////////////////
-Lets start without added rules like captures and freethrees. 
-Lets make a scoring relying only on consectutive stones
-and a working ai, 
-    -> knows how to win
-    -> knows how to prevent opponent from winning
-    
+UPDATE :
+    depth 2 is already way too long, need alpha beta pruning
+    evaluate board needs to be really fast.
+
+Hmmmmmm quand je place une pierre, celle ci n'impacte vrm que ses voisins a + ou - 5, 
+est ce donc necessairede reevaluer le score des pierres non impactees ?
