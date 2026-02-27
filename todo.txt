@@ -55,3 +55,9 @@ est ce donc necessairede reevaluer le score des pierres non impactees ?
 est ce quil y a moyen de savoir quest ce qui prend le plus de temps dexecution dans un programme ?
 
 est ce que const dans les protoypes impacte les performances ?
+
+std::vector<Position> moves = board.getCandidateMoves();
+    ca copie le std::vector 
+    const std::vector<Position>& moves = board.getCandidateMoves();
+    -> pas de copie, lecture seule 
+    
