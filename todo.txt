@@ -61,3 +61,4 @@ std::vector<Position> moves = board.getCandidateMoves();
     const std::vector<Position>& moves = board.getCandidateMoves();
     -> pas de copie, lecture seule 
     
+est ce que jajoute count a addNeighbors ?
